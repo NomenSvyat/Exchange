@@ -23,7 +23,8 @@ android {
 
 val libModules = listOf(
     Modules.core,
-    Modules.core_ui
+    Modules.core_ui,
+    Modules.splashscreen
 )
 
 dependencies {

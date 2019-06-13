@@ -1,5 +1,6 @@
 import Versions.KOTLIN
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.api.plugins.JavaPlugin.API_CONFIGURATION_NAME
 import org.gradle.api.plugins.JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME
 
 object Versions {
@@ -9,11 +10,11 @@ object Versions {
 private const val KAPT_CONFIGURATION_NAME = "kapt"
 
 fun DependencyHandler.kotlin() {
-    add(IMPLEMENTATION_CONFIGURATION_NAME, "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN")
+    add(API_CONFIGURATION_NAME, "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN")
 }
 
 fun DependencyHandler.constraintLayout() {
-    add(IMPLEMENTATION_CONFIGURATION_NAME, "androidx.constraintlayout:constraintlayout:1.1.3")
+    add(API_CONFIGURATION_NAME, "androidx.constraintlayout:constraintlayout:1.1.3")
 }
 
 fun DependencyHandler.appCompat() {
@@ -21,8 +22,8 @@ fun DependencyHandler.appCompat() {
 }
 
 fun DependencyHandler.rx() {
-    add(IMPLEMENTATION_CONFIGURATION_NAME, "io.reactivex.rxjava2:rxjava:2.2.9")
-    add(IMPLEMENTATION_CONFIGURATION_NAME, "io.reactivex.rxjava2:rxandroid:2.1.1")
+    add(API_CONFIGURATION_NAME, "io.reactivex.rxjava2:rxjava:2.2.9")
+    add(API_CONFIGURATION_NAME, "io.reactivex.rxjava2:rxandroid:2.1.1")
 }
 
 fun DependencyHandler.moxy() {

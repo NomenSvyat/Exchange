@@ -22,3 +22,10 @@ fun LibraryExtension.applyDefaultLibConfig() {
         }
     }
 }
+
+fun LibraryExtension.applyUiLibConfig() {
+    applyDefaultLibConfig()
+    dataBinding {
+        isEnabled = true
+    }
+}

@@ -56,13 +56,14 @@ fun DependencyHandler.cicerone() {
 }
 
 fun DependencyHandler.network() {
-    val okhttpVersion = "3.11.0"
+    val okhttpVersion = "3.12.3"
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
 
-    val retrofitVersion = "2.4.0"
+    val retrofitVersion = "2.6.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
 
     val tikxmlVersion = "0.8.13"
     implementation("com.tickaroo.tikxml:retrofit-converter:$tikxmlVersion")

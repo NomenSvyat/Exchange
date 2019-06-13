@@ -18,7 +18,7 @@ fun DependencyHandler.constraintLayout() {
 }
 
 fun DependencyHandler.appCompat() {
-    add(IMPLEMENTATION_CONFIGURATION_NAME, "androidx.appcompat:appcompat:1.0.2")
+    add(API_CONFIGURATION_NAME, "androidx.appcompat:appcompat:1.0.2")
 }
 
 fun DependencyHandler.rx() {
@@ -27,10 +27,9 @@ fun DependencyHandler.rx() {
 }
 
 fun DependencyHandler.moxy() {
-    val moxyVersion = "1.7.0"
-    add(IMPLEMENTATION_CONFIGURATION_NAME, "tech.schoolhelper:moxy-x-androidx:$moxyVersion")
-    add(IMPLEMENTATION_CONFIGURATION_NAME, "tech.schoolhelper:moxy-x:$moxyVersion")
-    add(KAPT_CONFIGURATION_NAME, "tech.schoolhelper:moxy-x-compiler:$moxyVersion")
+    val moxyVersion = "1.5.3"
+    add(API_CONFIGURATION_NAME, "com.arello-mobile:moxy:$moxyVersion")
+    add(KAPT_CONFIGURATION_NAME, "com.arello-mobile:moxy-compiler:$moxyVersion")
 }
 
 fun DependencyHandler.dagger() {

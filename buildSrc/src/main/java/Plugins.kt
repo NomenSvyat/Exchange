@@ -5,3 +5,8 @@ fun PluginDependenciesSpec.kotlin() {
     id("kotlin-android")
     kotlin("kapt")
 }
+
+fun PluginDependenciesSpec.androidLib() {
+    id("com.android.library")
+    kotlin()
+}

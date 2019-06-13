@@ -22,8 +22,8 @@ android {
 }
 
 val libModules = listOf(
-    ":core",
-    ":core_ui"
+    Modules.core,
+    Modules.core_ui
 )
 
 dependencies {

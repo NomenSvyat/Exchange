@@ -1,1 +1,1 @@
-include ':app', ':core_ui', ':core'
+include ':app', Modules.core, Modules.core_ui

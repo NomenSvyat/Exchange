@@ -7,7 +7,7 @@ android {
 }
 
 dependencies {
-    api(project(Modules.core))
+    api(project(LibModules.CORE))
     constraintLayout()
     appCompat()
     moxy()

@@ -1,1 +1,0 @@
-include ':app', Modules.splashscreen, Modules.core, Modules.core_ui

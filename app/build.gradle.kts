@@ -21,11 +21,6 @@ android {
     }
 }
 
-val libModules = listOf(
-    Modules.core,
-    Modules.core_ui,
-    Modules.splashscreen
-)
 
 dependencies {
     kotlin()
@@ -34,7 +29,7 @@ dependencies {
     dagger()
     cicerone()
 
-    libModules.forEach { implementation(project(it)) }
+    LibModules.values().forEach { implementation(project(it.path)) }
 
     testImplementation("junit:junit:4.12")
 }

@@ -13,8 +13,8 @@ kapt {
 }
 
 dependencies {
-    api(project(Modules.core))
-    implementation(project(Modules.core_ui))
+    api(project(LibModules.CORE))
+    implementation(project(LibModules.CORE_UI))
     moxy()
     dagger()
     cicerone()

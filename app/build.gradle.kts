@@ -21,12 +21,20 @@ android {
     }
 }
 
+val libModules = listOf(
+    ":core",
+    ":core_ui"
+)
+
 dependencies {
     kotlin()
     constraintLayout()
     appCompat()
     rx()
     moxy()
+    dagger()
+
+    libModules.forEach { implementation(project(it)) }
 
     testImplementation("junit:junit:4.12")
 }

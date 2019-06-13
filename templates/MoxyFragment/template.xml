@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<template name="Moxy Fragment" description="Creates a new fragment with presenter" format="5"
+          minApi="14" minBuildApi="14" revision="1">
+
+    <category value="Exchange Moxy"/>
+    <formfactor value="Mobile"/>
+
+    <parameter name="Screen Name" constraints="class|unique|nonempty" default="MainScreen"
+               help="The name of the screen" id="screenName" type="string"/>
+
+    <parameter name="Fragment Layout Name" constraints="layout|unique|nonempty"
+               default="fragment_empty" help="The name of the layout to create for the fragment"
+               id="layout" suggest="fragment_${classToResource(screenName)}" type="string"/>
+
+    <parameter name="Package name" constraints="package" default="com.nomensvyat.exchange"
+               id="packageName" type="string"/>
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_moxy.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl"/>
+    <execute file="recipe.xml.ftl"/>
+
+</template>

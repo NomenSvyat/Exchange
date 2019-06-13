@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<template
+        format="5"
+        revision="1"
+        name="Moxy Activity"
+        minApi="14"
+        minBuildApi="14"
+        description="Creates a new activity with presenter">
+
+    <category value="Exchange Moxy"/>
+    <formfactor value="Mobile"/>
+
+    <parameter
+            id="screenName"
+            name="Screen Name"
+            type="string"
+            constraints="class|unique|nonempty"
+            default="MainScreen"
+            help="The name of the screen"/>
+
+    <parameter
+            id="activityLayout"
+            name="Activity Layout Name"
+            type="string"
+            constraints="layout|unique|nonempty"
+            suggest="activity_${classToResource(screenName)}"
+            default="activity_main"
+            help="The name of the layout to create for the activity"/>
+
+    <parameter
+            id="packageName"
+            name="Package name"
+            type="string"
+            constraints="package"
+            default="com.nomensvyat.exchange"/>
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_moxy_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl"/>
+    <execute file="recipe.xml.ftl"/>
+
+</template>

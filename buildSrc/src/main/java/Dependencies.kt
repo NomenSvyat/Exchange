@@ -1,17 +1,9 @@
 import Versions.KOTLIN
-import Versions.RX
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.plugins.JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME
 
-object AndroidBuildConfig {
-    const val COMPILE_SDK = 28
-    const val MIN_SDK = 21
-    const val TARGET_SDK = 28
-}
-
 object Versions {
     const val KOTLIN = "1.3.31"
-    const val RX = "2.2.9"
 }
 
 fun <T : DependencyHandler> T.kotlin() {
@@ -27,10 +19,15 @@ fun <T : DependencyHandler> T.appCompat() {
 }
 
 fun <T : DependencyHandler> T.rx() {
-    add(IMPLEMENTATION_CONFIGURATION_NAME, "io.reactivex.rxjava2:rxjava:$RX")
+    add(IMPLEMENTATION_CONFIGURATION_NAME, "io.reactivex.rxjava2:rxjava:2.2.9")
     add(IMPLEMENTATION_CONFIGURATION_NAME, "io.reactivex.rxjava2:rxandroid:2.1.1")
 }
 
 fun <T : DependencyHandler> T.moxy() {
-
+    val moxyVersion = "1.7.0"
+    add(IMPLEMENTATION_CONFIGURATION_NAME, "tech.schoolhelper:moxy-x-androidx:$moxyVersion")
+    add(IMPLEMENTATION_CONFIGURATION_NAME, "tech.schoolhelper:moxy-x:$moxyVersion")
+    add(KAPT_CONFIGURATION_NAME, "tech.schoolhelper:moxy-x-compiler:$moxyVersion")
 }
+
+private const val KAPT_CONFIGURATION_NAME = "kapt"

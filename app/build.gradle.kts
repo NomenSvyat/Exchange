@@ -1,15 +1,14 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-android-extensions")
+    kotlin()
 }
 
 android {
-    compileSdkVersion(28)
+    compileSdkVersion(AndroidBuildConfig.COMPILE_SDK)
     defaultConfig {
         applicationId = "com.nomensvyat.exchange"
-        minSdkVersion(21)
-        targetSdkVersion(28)
+        minSdkVersion(AndroidBuildConfig.MIN_SDK)
+        targetSdkVersion(AndroidBuildConfig.TARGET_SDK)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -27,8 +26,7 @@ dependencies {
     constraintLayout()
     appCompat()
     rx()
+    moxy()
 
     testImplementation("junit:junit:4.12")
-    androidTestImplementation("androidx.test:runner:1.2.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 }

@@ -30,4 +30,10 @@ fun <T : DependencyHandler> T.moxy() {
     add(KAPT_CONFIGURATION_NAME, "tech.schoolhelper:moxy-x-compiler:$moxyVersion")
 }
 
+fun <T : DependencyHandler> T.dagger() {
+    val daggerVersion = "2.23.1"
+    add(KAPT_CONFIGURATION_NAME, "com.google.dagger:dagger:$daggerVersion")
+    add(IMPLEMENTATION_CONFIGURATION_NAME, "com.google.dagger:dagger-compiler:$daggerVersion")
+}
+
 private const val KAPT_CONFIGURATION_NAME = "kapt"

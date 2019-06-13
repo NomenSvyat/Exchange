@@ -13,6 +13,8 @@ dependencies {
     appCompat()
     rx()
     moxy()
+    dagger()
+    cicerone()
 
     testImplementation("junit:junit:4.12")
 }

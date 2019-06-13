@@ -1,12 +1,16 @@
 package com.nomensvyat.exchange
 
 import android.app.Application
+import com.arellomobile.mvp.RegisterMoxyReflectorPackages
 import com.nomensvyat.exchange.core.di.ComponentManager
 import com.nomensvyat.exchange.di.ApplicationModule
 import com.nomensvyat.exchange.di.DaggerApplicationComponent
 import com.nomensvyat.exchange.utils.common.TimberInitializer
 import javax.inject.Inject
 
+@RegisterMoxyReflectorPackages(
+    "com.nomensvyat.exchange.splashscreen"
+)
 class TheApp : Application() {
 
     @Inject

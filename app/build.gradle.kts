@@ -30,8 +30,6 @@ val libModules = listOf(
 dependencies {
     kotlin()
     constraintLayout()
-    appCompat()
-    rx()
     moxy()
     dagger()
     cicerone()

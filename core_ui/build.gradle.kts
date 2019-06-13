@@ -3,15 +3,13 @@ plugins {
 }
 
 android {
-    applyDefaultLibConfig()
+    applyUiLibConfig()
 }
 
 dependencies {
     api(project(Modules.core))
-    kotlin()
     constraintLayout()
     appCompat()
-    rx()
     moxy()
     dagger()
     cicerone()

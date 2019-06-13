@@ -3,7 +3,13 @@ plugins {
 }
 
 android {
-    applyDefaultLibConfig()
+    applyUiLibConfig()
+}
+
+kapt {
+    arguments {
+        arg("moxyReflectorPackage", "com.nomensvyat.exchange.splashscreen")
+    }
 }
 
 dependencies {

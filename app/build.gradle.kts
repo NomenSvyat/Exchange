@@ -33,6 +33,7 @@ dependencies {
     rx()
     moxy()
     dagger()
+    cicerone()
 
     libModules.forEach { implementation(project(it)) }
 

@@ -1,6 +1,5 @@
 import Versions.KOTLIN
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.api.plugins.JavaPlugin.ANNOTATION_PROCESSOR_CONFIGURATION_NAME
 import org.gradle.api.plugins.JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME
 
 object Versions {
@@ -37,4 +36,8 @@ fun DependencyHandler.dagger() {
     val daggerVersion = "2.23.1"
     add(IMPLEMENTATION_CONFIGURATION_NAME, "com.google.dagger:dagger:$daggerVersion")
     add(KAPT_CONFIGURATION_NAME, "com.google.dagger:dagger-compiler:$daggerVersion")
+}
+
+fun DependencyHandler.cicerone() {
+    add(IMPLEMENTATION_CONFIGURATION_NAME, "ru.terrakok.cicerone:cicerone:5.0.0")
 }

@@ -125,6 +125,7 @@ class ExchangePresenter @Inject constructor(
             viewModel.isError.set(false)
             viewModel.toAmount.set(it.toPlainString())
         }
+            ?: setError(R.string.exchange_rates_not_loaded)
     }
 
     private fun setError(@StringRes stringRes: Int) {

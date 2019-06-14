@@ -4,9 +4,11 @@ import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nomensvyat.exchange.core.di.ComponentManager
+import com.nomensvyat.exchange.core.di.getOrThrow
 import com.nomensvyat.exchange.core.ui.base.BaseActivity
 import com.nomensvyat.exchange.core.ui.utils.extensions.setContentBinding
 import com.nomensvyat.exchange.splashscreen.R
+import com.nomensvyat.exchange.splashscreen.di.DaggerSplashScreenComponent
 import dagger.Lazy
 import javax.inject.Inject
 
@@ -24,7 +26,10 @@ class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
     //endregion
 
     override fun inject(componentManager: ComponentManager) {
-        TODO()
+        DaggerSplashScreenComponent.builder()
+            .navigationProvider(componentManager.getOrThrow())
+            .build()
+            .injectTo(this)
     }
 
     private lateinit var binding: com.nomensvyat.exchange.splashscreen.databinding.ActivitySplashScreenBinding

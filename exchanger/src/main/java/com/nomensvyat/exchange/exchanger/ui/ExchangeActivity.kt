@@ -31,6 +31,7 @@ class ExchangeActivity : BaseActivity(), ExchangeContract.View {
     override fun inject(componentManager: ComponentManager) {
         DaggerExchangeComponent.builder()
             .navigationProvider(componentManager.getOrThrow())
+            .currencyStoreProvider(componentManager.getOrThrow())
             .build()
             .injectTo(this)
     }

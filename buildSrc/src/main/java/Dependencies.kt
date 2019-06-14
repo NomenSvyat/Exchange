@@ -2,8 +2,7 @@ import Versions.KOTLIN
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.ModuleDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.api.plugins.JavaPlugin.API_CONFIGURATION_NAME
-import org.gradle.api.plugins.JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME
+import org.gradle.api.plugins.JavaPlugin.*
 import org.gradle.kotlin.dsl.exclude
 import org.gradle.kotlin.dsl.project
 
@@ -21,6 +20,11 @@ private fun DependencyHandler.implementation(dependency: String) =
 
 private fun DependencyHandler.kapt(dependency: String) =
     add(KAPT_CONFIGURATION_NAME, dependency)
+
+private fun DependencyHandler.test(dependency: String) =
+    add(TEST_IMPLEMENTATION_CONFIGURATION_NAME, dependency)
+
+
 
 fun DependencyHandler.kotlin() {
     api("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN")
@@ -63,6 +67,7 @@ fun DependencyHandler.network() {
     val retrofitVersion = "2.6.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-simplexml:$retrofitVersion")
 
     val tikxmlVersion = "0.8.13"
     implementation("com.tickaroo.tikxml:retrofit-converter:$tikxmlVersion")
@@ -72,6 +77,10 @@ fun DependencyHandler.network() {
     implementation("com.tickaroo.tikxml:annotation:0.8.13")
     kapt("com.tickaroo.tikxml:processor:$tikxmlVersion")
 
+}
+
+fun DependencyHandler.testHamcrest() {
+    test("org.hamcrest:hamcrest:2.1")
 }
 
 fun DependencyHandler.project(module: LibModules): Dependency = project(module.path)

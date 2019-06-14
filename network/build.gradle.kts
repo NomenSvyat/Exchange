@@ -12,4 +12,5 @@ dependencies {
     network()
 
     testImplementation("junit:junit:4.12")
+    testHamcrest()
 }

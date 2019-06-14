@@ -19,6 +19,7 @@
         android:gravity="center"
         android:paddingStart="@dimen/item_currency_padding_horizontal"
         android:paddingTop="@dimen/item_currency_padding_vertical"
+        android:onClick="@{() -> viewModel.onItemSelectedListener.invoke(!viewModel.isSelected(),viewModel.currency)}"
         android:paddingEnd="@dimen/item_currency_padding_horizontal"
         android:paddingBottom="@dimen/item_currency_padding_vertical"
         android:text="@{viewModel.currency.name}"

@@ -12,7 +12,7 @@ class CurrencyRateMapper @Inject constructor() {
 
     fun map(currencyRateRaw: CurrencyRateRaw): CurrencyRate = with(currencyRateRaw) {
         CurrencyRate(
-            currency = Currency(currency),
+            currency = Currency.fromName(currency),
             rate = BigDecimal(rate)
         )
     }

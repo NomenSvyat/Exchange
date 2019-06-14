@@ -9,7 +9,8 @@ import com.nomensvyat.exchange.utils.common.TimberInitializer
 import javax.inject.Inject
 
 @RegisterMoxyReflectorPackages(
-    "com.nomensvyat.exchange.splashscreen"
+    "com.nomensvyat.exchange.splashscreen",
+    "com.nomensvyat.exchange.exchanger"
 )
 class TheApp : Application() {
 

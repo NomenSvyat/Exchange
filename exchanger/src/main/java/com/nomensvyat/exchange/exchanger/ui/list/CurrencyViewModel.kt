@@ -2,7 +2,7 @@ package com.nomensvyat.exchange.exchanger.ui.list
 
 import androidx.databinding.ObservableBoolean
 import com.nomensvyat.exchange.core.domain.currencies.models.Currency
-import com.nomensvyat.exchange.core.ui.utils.OnItemSelectedListener
+import com.nomensvyat.exchange.core.ui.utils.listeners.OnItemSelectedListener
 
 class CurrencyViewModel(
     val currency: Currency,

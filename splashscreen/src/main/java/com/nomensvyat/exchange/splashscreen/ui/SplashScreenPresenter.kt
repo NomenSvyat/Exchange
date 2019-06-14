@@ -11,9 +11,7 @@ class SplashScreenPresenter @Inject constructor(
     private val screenFactory: ScreenFactory
 ) : SplashScreenContract.Presenter() {
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-
-        router.navigateTo(screenFactory.exchangeScreen)
+    override fun onAnimationEnded() {
+        router.replaceScreen(screenFactory.exchangeScreen)
     }
 }

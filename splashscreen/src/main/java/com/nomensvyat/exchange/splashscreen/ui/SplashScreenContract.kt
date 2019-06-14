@@ -7,5 +7,7 @@ class SplashScreenContract private constructor() {
 
     interface View : BaseView
 
-    abstract class Presenter : BasePresenter<View>()
+    abstract class Presenter : BasePresenter<View>() {
+        abstract fun onAnimationEnded()
+    }
 }

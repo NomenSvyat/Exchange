@@ -7,6 +7,7 @@ import com.nomensvyat.exchange.core.di.ComponentManager
 import com.nomensvyat.exchange.core.di.getOrThrow
 import com.nomensvyat.exchange.core.ui.base.BaseActivity
 import com.nomensvyat.exchange.core.ui.utils.extensions.setContentBinding
+import com.nomensvyat.exchange.core.ui.utils.listeners.AnimatorListener
 import com.nomensvyat.exchange.splashscreen.R
 import com.nomensvyat.exchange.splashscreen.di.DaggerSplashScreenComponent
 import dagger.Lazy
@@ -37,5 +38,6 @@ class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = setContentBinding(R.layout.activity_splash_screen)
+        binding.lottieAnimationView.addAnimatorListener(AnimatorListener(onEnd = { presenter.onAnimationEnded() }))
     }
 }

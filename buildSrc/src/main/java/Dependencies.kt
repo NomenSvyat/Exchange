@@ -63,6 +63,11 @@ fun DependencyHandler.groupie() {
     api("com.xwray:groupie-databinding:$groupieVersion")
 }
 
+fun DependencyHandler.lottie() {
+    val lottieVersion = "3.0.1"
+    implementation("com.airbnb.android:lottie:$lottieVersion")
+}
+
 fun DependencyHandler.network() {
     val okhttpVersion = "3.12.3"
     api("com.squareup.okhttp3:okhttp:$okhttpVersion")

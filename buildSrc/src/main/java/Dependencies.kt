@@ -63,7 +63,6 @@ fun DependencyHandler.network() {
     val retrofitVersion = "2.6.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
 
     val tikxmlVersion = "0.8.13"
     implementation("com.tickaroo.tikxml:retrofit-converter:$tikxmlVersion")

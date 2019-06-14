@@ -8,7 +8,7 @@ android {
 
 kapt {
     arguments {
-        arg("moxyReflectorPackage", "com.nomensvyat.exchange.splashscreen")
+        arg("moxyReflectorPackage", "com.nomensvyat.exchange.exchanger")
     }
 }
 

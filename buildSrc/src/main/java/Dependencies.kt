@@ -65,13 +65,13 @@ fun DependencyHandler.groupie() {
 
 fun DependencyHandler.network() {
     val okhttpVersion = "3.12.3"
-    implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
-    implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
+    api("com.squareup.okhttp3:okhttp:$okhttpVersion")
+    api("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
 
     val retrofitVersion = "2.6.0"
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-simplexml:$retrofitVersion")
+    api("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    api("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
+    api("com.squareup.retrofit2:converter-simplexml:$retrofitVersion")
 }
 
 fun DependencyHandler.testHamcrest() {

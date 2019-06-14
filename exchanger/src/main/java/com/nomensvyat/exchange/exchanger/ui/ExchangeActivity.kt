@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.nomensvyat.exchange.core.di.ComponentManager
 import com.nomensvyat.exchange.core.di.getOrThrow
 import com.nomensvyat.exchange.core.ui.base.BaseActivity
 import com.nomensvyat.exchange.core.ui.utils.extensions.setContentBinding
+import com.nomensvyat.exchange.core.utils.extensions.onMain
+import com.nomensvyat.exchange.core.utils.extensions.safeSubscribe
 import com.nomensvyat.exchange.exchanger.R
 import com.nomensvyat.exchange.exchanger.databinding.ActivityExchangeBinding
 import com.nomensvyat.exchange.exchanger.di.DaggerExchangeComponent
@@ -20,6 +23,7 @@ import com.nomensvyat.exchange.exchanger.ui.list.CurrencyViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import dagger.Lazy
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ExchangeActivity : BaseActivity(), ExchangeContract.View {
@@ -39,6 +43,7 @@ class ExchangeActivity : BaseActivity(), ExchangeContract.View {
         DaggerExchangeComponent.builder()
             .navigationProvider(componentManager.getOrThrow())
             .currencyStoreProvider(componentManager.getOrThrow())
+            .contextProvider(componentManager.getOrThrow())
             .build()
             .injectTo(this)
     }
@@ -51,6 +56,13 @@ class ExchangeActivity : BaseActivity(), ExchangeContract.View {
         super.onCreate(savedInstanceState)
         binding = setContentBinding(R.layout.activity_exchange)
         initCurrencyLists()
+
+        RxTextView.textChanges(binding.etAmountFrom)
+            .debounce(300, TimeUnit.MILLISECONDS)
+            .map { it.toString() }
+            .distinctUntilChanged()
+            .onMain()
+            .safeSubscribe({ presenter.onAmountFromTextChanged(it) })
     }
 
     private fun initCurrencyLists() {
@@ -71,6 +83,10 @@ class ExchangeActivity : BaseActivity(), ExchangeContract.View {
     ) {
         fromCurrenciesAdapter.updateAsync(fromCurrencies.map { CurrencyViewItem(it) })
         toCurrenciesAdapter.updateAsync(toCurrencies.map { CurrencyViewItem(it) })
+    }
+
+    override fun setViewModel(viewModel: ExchangeViewModel) {
+        binding.viewModel = viewModel
     }
 
     companion object {

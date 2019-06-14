@@ -1,9 +1,12 @@
 package com.nomensvyat.exchange.exchanger.ui
 
-import android.util.ArrayMap
+import androidx.annotation.StringRes
 import com.arellomobile.mvp.InjectViewState
 import com.nomensvyat.exchange.core.domain.currencies.models.Currency
 import com.nomensvyat.exchange.core.domain.currencies.models.CurrencyRate
+import com.nomensvyat.exchange.core.ui.utils.ResourseManager
+import com.nomensvyat.exchange.exchanger.R
+import com.nomensvyat.exchange.exchanger.domain.CurrencyConverter
 import com.nomensvyat.exchange.exchanger.domain.CurrencyInteractor
 import com.nomensvyat.exchange.exchanger.ui.list.CurrencyViewModel
 import io.reactivex.Flowable
@@ -14,18 +17,20 @@ import javax.inject.Inject
 
 @InjectViewState
 class ExchangePresenter @Inject constructor(
-    private val currencyInteractor: CurrencyInteractor
+    private val currencyInteractor: CurrencyInteractor,
+    private val currencyConverter: CurrencyConverter,
+    private val resourseManager: ResourseManager
 ) : ExchangeContract.Presenter() {
 
-    private val currencyRates = ArrayMap<Currency, BigDecimal>()
     private val fromCurrenciesViewModels = mutableListOf<CurrencyViewModel>()
     private val toCurrenciesViewModels = mutableListOf<CurrencyViewModel>()
+    private val viewModel = ExchangeViewModel()
 
     init {
         Flowable.interval(0L, REQUEST_INTERVAL_SECONDS, TimeUnit.SECONDS, Schedulers.computation())
             .switchMapSingle { currencyInteractor.getCurrencyRates() }
             .subscribeAndBind({ rates ->
-                setRates(rates)
+                currencyConverter.setRates(rates)
 
                 setCurrencies(rates)
             })
@@ -39,10 +44,10 @@ class ExchangePresenter @Inject constructor(
         get() =
             fromCurrenciesViewModels.firstOrNull { it.isSelected.get() }?.currency
 
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
 
-    private fun setRates(rates: List<CurrencyRate>) {
-        currencyRates.clear()
-        rates.forEach { (currency, rate) -> currencyRates[currency] = rate }
+        viewState.setViewModel(viewModel)
     }
 
     private fun setCurrencies(rates: List<CurrencyRate>) {
@@ -55,6 +60,7 @@ class ExchangePresenter @Inject constructor(
             currencies.map { createCurrencyViewModel(it, fromCurrenciesViewModels) }
         )
         fromCurrenciesViewModels.firstOrNull()?.isSelected?.set(true)
+
         toCurrenciesViewModels.addAll(
             currencies.map { createCurrencyViewModel(it, toCurrenciesViewModels) }
         )
@@ -87,8 +93,43 @@ class ExchangePresenter @Inject constructor(
                 .asSequence()
                 .filter { it.currency != currency }
                 .forEach { it.isSelected.set(false) }
+            calculateConvertedAmount()
             true
         }
+    }
+
+    override fun onAmountFromTextChanged(amount: String) {
+        calculateConvertedAmount()
+    }
+
+    private fun calculateConvertedAmount() {
+        val currentAmount = try {
+            BigDecimal(viewModel.fromAmount.get())
+        } catch (e: NumberFormatException) {
+            setError(R.string.exchange_amount_parse_error)
+            return
+        }
+
+        val selectedToCurrency = selectedToCurrency
+        val selectedFromCurrency = selectedFromCurrency
+
+        if (selectedToCurrency == null || selectedFromCurrency == null) {
+            setError(R.string.exchange_unselected_currency_error)
+            return
+        }
+
+        val convertedAmount =
+            currencyConverter.convert(selectedFromCurrency, selectedToCurrency, currentAmount)
+
+        convertedAmount?.let {
+            viewModel.isError.set(false)
+            viewModel.toAmount.set(it.toPlainString())
+        }
+    }
+
+    private fun setError(@StringRes stringRes: Int) {
+        viewModel.error.set(resourseManager.getString(stringRes))
+        viewModel.isError.set(true)
     }
 
     private companion object {

@@ -56,6 +56,16 @@ class CurrencyConverterTest {
         )
     }
 
+    @Test
+    fun convertFromSomeToSomeZero() {
+        val converted = currencyConverter.convert(PHP, RUB, BigDecimal("0"))
+
+        assertEquals(
+            BigDecimal("0").setScale(4, RoundingMode.DOWN),
+            converted
+        )
+    }
+
     companion object {
         val USD = Currency.fromName("USD")
         val EUR = Currency.fromName("EUR")

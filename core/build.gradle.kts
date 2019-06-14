@@ -9,6 +9,7 @@ android {
 dependencies {
     kotlin()
     rx()
+    dagger()
     api("com.jakewharton.timber:timber:4.7.1")
 
 

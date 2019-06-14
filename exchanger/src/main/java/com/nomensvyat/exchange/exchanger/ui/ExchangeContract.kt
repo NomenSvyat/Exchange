@@ -14,7 +14,12 @@ class ExchangeContract private constructor() {
             fromCurrencies: List<CurrencyViewModel>,
             toCurrencies: List<CurrencyViewModel>
         )
+
+        @StateStrategyType(AddToEndSingleStrategy::class)
+        fun setViewModel(viewModel: ExchangeViewModel)
     }
 
-    abstract class Presenter : BasePresenter<View>()
+    abstract class Presenter : BasePresenter<View>() {
+        abstract fun onAmountFromTextChanged(amount: String)
+    }
 }

@@ -1,4 +1,5 @@
 import com.android.build.gradle.LibraryExtension
+import org.gradle.api.JavaVersion
 
 object AndroidBuildConfig {
     const val COMPILE_SDK = 28
@@ -20,6 +21,10 @@ fun LibraryExtension.applyDefaultLibConfig() {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 

@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nomensvyat.exchange.exchanger.ui.ExchangeViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,6 +31,8 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:maxLines="1"
+            android:gravity="center"
+            android:text="@={viewModel.fromAmount}"
             app:layout_constraintBottom_toTopOf="@id/tvAmountTo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +42,9 @@
             android:id="@+id/tvAmountTo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.isError ? viewModel.error : viewModel.toAmount}"
+            android:textColor="@{viewModel.isError ? @color/reddish : @color/black}"
             app:layout_constraintBottom_toTopOf="@id/rvToCurrency"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

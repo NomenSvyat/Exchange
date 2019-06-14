@@ -17,6 +17,7 @@ class ApplicationModule(private val application: Application) {
     fun provideContext(): Context = application
 
 
+    @Module
     abstract class Bindings {
 
         @Singleton

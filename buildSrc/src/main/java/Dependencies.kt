@@ -1,9 +1,7 @@
 import Versions.KOTLIN
 import org.gradle.api.artifacts.Dependency
-import org.gradle.api.artifacts.ModuleDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.plugins.JavaPlugin.*
-import org.gradle.kotlin.dsl.exclude
 import org.gradle.kotlin.dsl.project
 
 object Versions {
@@ -68,15 +66,6 @@ fun DependencyHandler.network() {
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-simplexml:$retrofitVersion")
-
-    val tikxmlVersion = "0.8.13"
-    implementation("com.tickaroo.tikxml:retrofit-converter:$tikxmlVersion")
-        ?.let { it as? ModuleDependency }
-        ?.exclude("com.tickaroo.tikxml")
-    implementation("com.tickaroo.tikxml:core:$tikxmlVersion")
-    implementation("com.tickaroo.tikxml:annotation:0.8.13")
-    kapt("com.tickaroo.tikxml:processor:$tikxmlVersion")
-
 }
 
 fun DependencyHandler.testHamcrest() {

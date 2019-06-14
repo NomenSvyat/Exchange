@@ -2,14 +2,13 @@ package com.nomensvyat.exchange.network.di
 
 import com.nomensvyat.exchange.core.domain.config.AppConfig
 import com.nomensvyat.exchange.network.api.CurrencyApi
-import com.nomensvyat.exchange.network.utils.parsing.TikXmlFactory
-import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import javax.inject.Named
 
 @Module
@@ -37,12 +36,11 @@ class NetworkModule {
 
     @Provides
     fun provideRetrofit(
-        okHttpClient: OkHttpClient,
-        tikXmlFactory: TikXmlFactory
+        okHttpClient: OkHttpClient
     ): Retrofit.Builder =
         Retrofit.Builder()
             .client(okHttpClient)
-            .addConverterFactory(TikXmlConverterFactory.create(tikXmlFactory.tiXml))
+            .addConverterFactory(SimpleXmlConverterFactory.create())
 
     @Provides
     fun provideCurrencyApi(retrofitBuilder: Retrofit.Builder): CurrencyApi =

@@ -1,0 +1,4 @@
+<resources>
+    <string name="exchange_unselected_currency_error">Select from and to currencies</string>
+    <string name="exchange_amount_parse_error">Check entered amount format</string>
+</resources>

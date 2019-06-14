@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nomensvyat.exchange.exchanger.ui.list.CurrencyViewModel" />
+
+    </data>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/item_currency_margin"
+        android:background="@drawable/currency_bg"
+        android:gravity="center"
+        android:paddingStart="@dimen/item_currency_padding_horizontal"
+        android:paddingTop="@dimen/item_currency_padding_vertical"
+        android:onClick="@{() -> viewModel.onItemSelectedListener.invoke(!viewModel.isSelected(),viewModel.currency)}"
+        android:paddingEnd="@dimen/item_currency_padding_horizontal"
+        android:paddingBottom="@dimen/item_currency_padding_vertical"
+        android:text="@{viewModel.currency.name}"
+        android:textSize="@dimen/item_currency_text_size"
+        android:textStyle="bold"
+        app:selected="@{viewModel.isSelected}"
+        tools:text="USD" />
+</layout>

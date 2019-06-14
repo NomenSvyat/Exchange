@@ -74,10 +74,10 @@ fun <T> Observable<T>.onMain(): Observable<T> = observeOn(AndroidSchedulers.main
 
 //region ListMap
 
-inline fun <T, R : Any> Single<List<T>>.listMap(crossinline transformer: (T) -> R?): Single<List<R>> =
+inline fun <T, R : Any> Single<out List<T>>.listMap(crossinline transformer: (T) -> R?): Single<List<R>> =
     map { list -> list.mapNotNull { value -> transformer(value) } }
 
-inline fun <T, R : Any> Flowable<List<T>>.listMap(crossinline transformer: (T) -> R?): Flowable<List<R>> =
+inline fun <T, R : Any> Flowable<out List<T>>.listMap(crossinline transformer: (T) -> R?): Flowable<List<R>> =
     map { list -> list.mapNotNull { value -> transformer(value) } }
 
 //endregion

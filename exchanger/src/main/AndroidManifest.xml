@@ -1,2 +1,7 @@
-<manifest
-        package="com.nomensvyat.exchange.exchanger"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nomensvyat.exchange.exchanger">
+
+    <application>
+        <activity android:name=".ui.ExchangeActivity" />
+    </application>
+</manifest>

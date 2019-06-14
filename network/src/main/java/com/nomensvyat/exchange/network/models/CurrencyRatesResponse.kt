@@ -1,6 +1,5 @@
 package com.nomensvyat.exchange.network.models
 
-import org.simpleframework.xml.Attribute
 import org.simpleframework.xml.ElementList
 import org.simpleframework.xml.Path
 import org.simpleframework.xml.Root
@@ -12,14 +11,3 @@ class CurrencyRatesResponse {
     @field:ElementList(name = "Cube")
     var currencies: MutableList<CurrencyRateRaw> = mutableListOf()
 }
-
-
-@Root(name = "Cube")
-data class CurrencyRateRaw(
-    @JvmField
-    @field:Attribute
-    var currency: String = "",
-    @JvmField
-    @field:Attribute
-    var rate: String = ""
-)

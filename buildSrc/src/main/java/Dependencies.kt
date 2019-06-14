@@ -57,6 +57,12 @@ fun DependencyHandler.cicerone() {
     implementation("ru.terrakok.cicerone:cicerone:5.0.0")
 }
 
+fun DependencyHandler.groupie() {
+    val groupieVersion = "2.3.0"
+    api("com.xwray:groupie:$groupieVersion")
+    api("com.xwray:groupie-databinding:$groupieVersion")
+}
+
 fun DependencyHandler.network() {
     val okhttpVersion = "3.12.3"
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")

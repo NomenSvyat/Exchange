@@ -13,6 +13,7 @@ dependencies {
     moxy()
     dagger()
     cicerone()
+    groupie()
 
     testImplementation("junit:junit:4.12")
 }

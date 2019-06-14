@@ -3,4 +3,8 @@
     <color name="debug_1">#8FF300</color>
     <color name="debug_2">#9B0CAA</color>
     <color name="debug_3">#F08F01</color>
+
+    <color name="black">#000000</color>
+    <color name="black_10">#1A000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
